@@ -13,19 +13,31 @@ jobs:
     steps:
 
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Security Scan (HTML Check)
+      - name: Run Security Scan
         run: |
           echo "Running basic security check..."
+
+          # Check for script tags (basic XSS detection)
           if grep -r "<script>" .; then
-            echo "Warning: Script tag found!"
+            echo "⚠️ Warning: Script tag found!"
           else
-            echo "No risky scripts found."
+            echo "✅ No risky scripts found."
           fi
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+      - name: Validate HTML File Exists
+        run: |
+          if [ -f index.html ]; then
+            echo "✅ index.html found"
+          else
+            echo "❌ index.html missing"
+            exit 1
+          fi
+
+      - name: Build Complete
+        run: echo "🚀 CI/CD Pipeline executed successfully"
+
+      - name: Trigger Alert on Failure
+        if: failure()
+        run: echo "❌ ALERT: Pipeline failed!"
