@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
@@ -19,25 +18,25 @@ jobs:
         run: |
           echo "Running basic security check..."
 
-          # Check for script tags (basic XSS detection)
+          # Check for script tags
           if grep -r "<script>" .; then
-            echo "⚠️ Warning: Script tag found!"
+            echo "Warning: Script tag found!"
           else
-            echo "✅ No risky scripts found."
+            echo "No risky scripts found."
           fi
 
       - name: Validate HTML File Exists
         run: |
           if [ -f index.html ]; then
-            echo "✅ index.html found"
+            echo "index.html found"
           else
-            echo "❌ index.html missing"
+            echo "index.html missing"
             exit 1
           fi
 
       - name: Build Complete
-        run: echo "🚀 CI/CD Pipeline executed successfully"
+        run: echo "CI/CD Pipeline executed successfully"
 
       - name: Trigger Alert on Failure
         if: failure()
-        run: echo "❌ ALERT: Pipeline failed!"
+        run: echo "ALERT: Pipeline failed!"
