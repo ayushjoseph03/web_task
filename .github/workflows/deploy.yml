@@ -16,16 +16,15 @@ jobs:
 
       - name: Run Security Scan
         run: |
-          echo "Running basic security check..."
+          echo "Running security check..."
 
-          # Check for script tags
           if grep -r "<script>" .; then
             echo "Warning: Script tag found!"
           else
             echo "No risky scripts found."
           fi
 
-      - name: Validate HTML File Exists
+      - name: Validate index.html Exists
         run: |
           if [ -f index.html ]; then
             echo "index.html found"
@@ -35,8 +34,8 @@ jobs:
           fi
 
       - name: Build Complete
-        run: echo "CI/CD Pipeline executed successfully"
+        run: echo "Pipeline executed successfully"
 
-      - name: Trigger Alert on Failure
+      - name: Alert on Failure
         if: failure()
-        run: echo "ALERT: Pipeline failed!"
+        run: echo "ALERT: Pipeline failed"
