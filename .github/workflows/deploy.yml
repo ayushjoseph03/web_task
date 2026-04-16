@@ -34,8 +34,10 @@ jobs:
           fi
 
       - name: Build Complete
-        run: echo "Pipeline executed successfully"
+        run: |
+          echo "Pipeline executed successfully"
 
       - name: Alert on Failure
         if: failure()
-        run: echo "ALERT: Pipeline failed"
+        run: |
+          echo "ALERT: Pipeline failed"
