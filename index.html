@@ -1,99 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>DevOps CI/CD Dashboard</title>
+<title>DevOps Project Page</title>
 
 <style>
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    text-align: center;
     margin: 0;
     padding: 0;
 
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg,#141e30,#243b55);
     color: white;
 
-    transition: 0.3s;
+    text-align: center;
 }
 
-/* Header */
-
-header {
-    padding: 20px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* Card Container */
+/* Container */
 
 .container {
+
     margin-top: 40px;
 }
 
-/* Card Design */
+/* Card */
 
 .card {
-    background: rgba(255,255,255,0.1);
-    padding: 25px;
-    margin: 20px auto;
-    width: 300px;
 
-    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
 
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    padding: 30px;
 
-    transition: transform 0.3s;
+    width: 420px;
+
+    margin: auto;
+
+    border-radius: 15px;
+
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+
 }
 
-.card:hover {
-    transform: scale(1.05);
-}
+/* Links */
 
-/* Buttons */
+a {
 
-button {
+    color: #00d4ff;
 
-    padding: 12px 18px;
-    margin: 10px;
+    text-decoration: none;
 
-    font-size: 15px;
-
-    border: none;
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    background: #00c6ff;
-    color: white;
-
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #0072ff;
-}
-
-/* Clock */
-
-#clock {
-    font-size: 18px;
-    margin-top: 15px;
-}
-
-/* Status */
-
-#status {
-    font-size: 20px;
-    margin-top: 10px;
     font-weight: bold;
 }
 
-/* Dark Mode */
+a:hover {
 
-.dark-mode {
+    color: #66e0ff;
+}
 
-    background: linear-gradient(135deg, #000000, #434343);
+/* Date */
+
+#date {
+
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Time */
+
+#time {
+
+    font-size: 20px;
+    margin-top: 5px;
+
+    font-weight: bold;
+}
+
+/* Description */
+
+.description {
+
+    margin-top: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+/* Section */
+
+.section {
+
+    margin-top: 25px;
 }
 
 </style>
@@ -102,32 +100,90 @@ button:hover {
 
 <body>
 
-<header>
-🚀 DevOps CI/CD Dashboard
-</header>
-
 <div class="container">
 
 <div class="card">
 
-<p>This webpage is deployed using GitHub CI/CD.</p>
+<!-- Date & Time -->
 
-<button onclick="showMessage()">
-Run Pipeline
-</button>
+<div id="date"></div>
 
-<button onclick="toggleDarkMode()">
-Toggle Dark Mode
-</button>
+<div id="time"></div>
 
-<button onclick="simulateDeploy()">
-Simulate Deployment
-</button>
+<!-- Project Description -->
 
-<div id="clock"></div>
+<div class="description">
 
-<div id="status">
-Status: Waiting...
+This project demonstrates the implementation of a 
+Continuous Integration and Continuous Deployment (CI/CD) 
+pipeline using GitHub Actions. The webpage is automatically 
+validated and deployed using workflow automation, ensuring 
+reliable and secure updates whenever code is pushed.
+
+</div>
+
+<!-- GitHub Repo -->
+
+<div class="section">
+
+🔗 GitHub Repository:
+
+<br><br>
+
+<a href="https://github.com/ayushjoseph03/web_task" target="_blank">
+View Project Repository
+</a>
+
+</div>
+
+<!-- Concepts Used -->
+
+<div class="section">
+
+📘 Concepts Used:
+
+<br><br>
+
+<a href="https://docs.github.com/en/actions" target="_blank">
+GitHub Actions
+</a>
+
+<br>
+
+<a href="https://docs.github.com/en/pages" target="_blank">
+GitHub Pages
+</a>
+
+<br>
+
+<a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions" target="_blank">
+YAML Workflow Files
+</a>
+
+<br>
+
+<a href="https://git-scm.com/docs" target="_blank">
+Git Version Control
+</a>
+
+<br>
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">
+HTML
+</a>
+
+<br>
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">
+CSS Styling
+</a>
+
+<br>
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+JavaScript
+</a>
+
 </div>
 
 </div>
@@ -136,64 +192,23 @@ Status: Waiting...
 
 <script>
 
-/* Alert Button */
+/* Date */
 
-function showMessage() {
-
-alert("Pipeline Triggered Successfully!");
-
-}
-
-/* Dark Mode */
-
-function toggleDarkMode() {
-
-document.body.classList.toggle("dark-mode");
-
-alert("Theme Changed!");
-
-}
-
-/* Live Clock */
-
-function updateClock() {
+function updateDateTime() {
 
 const now = new Date();
 
-document.getElementById("clock").innerText =
-"Current Time: " + now.toLocaleTimeString();
+document.getElementById("date").innerText =
+"Date: " + now.toDateString();
+
+document.getElementById("time").innerText =
+"Time: " + now.toLocaleTimeString();
 
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateDateTime,1000);
 
-/* Deployment Simulator */
-
-function simulateDeploy() {
-
-alert("Deployment Started...");
-
-document.getElementById("status").innerText =
-"Status: Deploying...";
-
-setTimeout(() => {
-
-document.getElementById("status").innerText =
-"Status: Deployment Successful!";
-
-alert("Deployment Completed Successfully!");
-
-}, 3000);
-
-}
-
-/* Page Load Alert */
-
-window.onload = function() {
-
-alert("Welcome! CI/CD Dashboard Loaded Successfully.");
-
-}
+updateDateTime();
 
 </script>
 
