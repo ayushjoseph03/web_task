@@ -1,101 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DevOps CI/CD Demo</title>
+    <title>DevOps CI/CD Dashboard</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            transition: background-color 0.3s;
-        }
+<style>
 
-        h1 {
-            color: #333;
-        }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
 
-        #clock {
-            font-size: 20px;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+    transition: 0.3s;
+}
 
-        .dark-mode {
-            background-color: #222;
-            color: white;
-        }
-    </style>
+/* Header */
+
+header {
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Card Container */
+
+.container {
+    margin-top: 40px;
+}
+
+/* Card Design */
+
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 25px;
+    margin: 20px auto;
+    width: 300px;
+
+    border-radius: 12px;
+
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Buttons */
+
+button {
+
+    padding: 12px 18px;
+    margin: 10px;
+
+    font-size: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    background: #00c6ff;
+    color: white;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0072ff;
+}
+
+/* Clock */
+
+#clock {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+/* Status */
+
+#status {
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Dark Mode */
+
+.dark-mode {
+
+    background: linear-gradient(135deg, #000000, #434343);
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1>🚀 DevOps CI/CD Pipeline Demo</h1>
+<header>
+🚀 DevOps CI/CD Dashboard
+</header>
 
-<p>This webpage is deployed using GitHub Actions.</p>
+<div class="container">
 
-<!-- Button Interaction -->
-<button onclick="showMessage()">Click Me</button>
+<div class="card">
 
-<!-- Dark Mode Toggle -->
-<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+<p>This webpage is deployed using GitHub CI/CD.</p>
 
-<!-- Live Clock -->
+<button onclick="showMessage()">
+Run Pipeline
+</button>
+
+<button onclick="toggleDarkMode()">
+Toggle Dark Mode
+</button>
+
+<button onclick="simulateDeploy()">
+Simulate Deployment
+</button>
+
 <div id="clock"></div>
 
-<!-- Form Interaction -->
-<h2>Send Feedback</h2>
+<div id="status">
+Status: Waiting...
+</div>
 
-<form onsubmit="submitForm(event)">
-    <input type="text" id="name" placeholder="Enter your name" required>
-    <br><br>
+</div>
 
-    <input type="email" id="email" placeholder="Enter your email" required>
-    <br><br>
-
-    <button type="submit">Submit</button>
-</form>
-
-<p id="response"></p>
+</div>
 
 <script>
 
+/* Alert Button */
+
 function showMessage() {
-    alert("CI/CD Pipeline is working successfully!");
+
+alert("Pipeline Triggered Successfully!");
+
 }
+
+/* Dark Mode */
 
 function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
+
+document.body.classList.toggle("dark-mode");
+
+alert("Theme Changed!");
+
 }
 
-// Live Clock
+/* Live Clock */
+
 function updateClock() {
-    const now = new Date();
-    document.getElementById("clock").innerText =
-        "Current Time: " + now.toLocaleTimeString();
+
+const now = new Date();
+
+document.getElementById("clock").innerText =
+"Current Time: " + now.toLocaleTimeString();
+
 }
 
 setInterval(updateClock, 1000);
 
-// Form Handler
-function submitForm(event) {
-    event.preventDefault();
+/* Deployment Simulator */
 
-    const name = document.getElementById("name").value;
+function simulateDeploy() {
 
-    document.getElementById("response").innerText =
-        "Thank you, " + name + "! Your feedback was received.";
+alert("Deployment Started...");
+
+document.getElementById("status").innerText =
+"Status: Deploying...";
+
+setTimeout(() => {
+
+document.getElementById("status").innerText =
+"Status: Deployment Successful!";
+
+alert("Deployment Completed Successfully!");
+
+}, 3000);
+
+}
+
+/* Page Load Alert */
+
+window.onload = function() {
+
+alert("Welcome! CI/CD Dashboard Loaded Successfully.");
+
 }
 
 </script>
 
 </body>
+
 </html>
