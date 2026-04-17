@@ -26,13 +26,12 @@ jobs:
           else
             echo "No risky scripts found."
           fi
-
       - name: Validate index1.html Exists
         run: |
-          if [ -f index1.html ]; then
-            echo "index1.html found"
+          if [ -f index.html ]; then
+            echo "index.html found"
           else
-            echo "index1.html missing"
+            echo "index.html missing"
             exit 1
           fi
 
