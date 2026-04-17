@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
     steps:
 
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Run Security Scan
         run: |
@@ -26,10 +29,10 @@ jobs:
 
       - name: Validate index1.html Exists
         run: |
-          if [ -f index.html ]; then
-            echo "index.html found"
+          if [ -f index1.html ]; then
+            echo "index1.html found"
           else
-            echo "index.html missing"
+            echo "index1.html missing"
             exit 1
           fi
 
